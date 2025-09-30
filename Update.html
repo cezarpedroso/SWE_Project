@@ -6,7 +6,7 @@ document.getElementById('updateDataBtn').addEventListener('click', async () => {
         column1: 'Updated Value 1',
         column2: 'Updated Value 2'
     };
-    const idToUpdate = 1; // example: update row with id = 1
+    const idToUpdate = 1; 
 
     try {
         const response = await fetch(`/data/${idToUpdate}`, {
