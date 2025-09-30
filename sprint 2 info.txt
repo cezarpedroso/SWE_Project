@@ -1,0 +1,1 @@
+create a querie framework that works - filters and tables doesn't matter
