@@ -1,0 +1,18 @@
+<button id="deleteDataBtn">Delete Data</button>
+
+<script>
+document.getElementById('deleteDataBtn').addEventListener('click', async () => {
+    const idToDelete = 1; 
+
+    try {
+        const response = await fetch(`/data/${idToDelete}`, {
+            method: 'DELETE'
+        });
+
+        const result = await response.json();
+        console.log('Delete result:', result);
+    } catch (err) {
+        console.error('Error deleting data:', err);
+    }
+});
+</script>
