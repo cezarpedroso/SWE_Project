@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CRP BETA 0.2</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>CRP BETA 0.2</h1>
+
+  <!-- Add link to signup page -->
+  <p style="text-align: center; margin-bottom: 1rem;">
+    Don't have an account? <a href="/signup.html">Sign up here</a>
+  </p>
+
+  <section id="loginSection">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="text" id="loginUser" placeholder="Username" required />
+      <input type="password" id="loginPass" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <button id="logoutBtn" style="display:none;">Logout</button>
+    <p id="loginMsg"></p>
+  </section>
+
+  <nav class="tabs" style="display:none;">
+    <button class="tab-btn" data-tab="items">Items</button>
+    <button class="tab-btn" data-tab="people">People</button>
+    <button class="tab-btn" data-tab="services">Services</button>
+  </nav>
+
+  <section id="items" class="tab" style="display:none;">
+    <h2>Items</h2>
+    <form id="itemForm">
+      <input type="hidden" id="itemId"/>
+      <input type="text" id="name" placeholder="Item name" required />
+      <input type="text" id="description" placeholder="Description" />
+      <button type="submit">Save</button>
+    </form>
+
+    <table id="itemsTable">
+      <thead><tr><th>ID</th><th>Name</th><th>Description</th><th>Actions</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="people" class="tab" style="display:none;">
+    <h2>People</h2>
+    <form id="personForm">
+      <input type="text" id="personName" placeholder="Name" required />
+      <input type="email" id="personEmail" placeholder="Email" required />
+      <button type="submit">Add Person</button>
+    </form>
+
+    <table id="peopleTable">
+      <thead><tr><th>ID</th><th>Name</th><th>Email</th><th>Services</th></tr></thead>
+      <tbody></tbody>
+    </table>
+  </section>
+
+  <section id="services" class="tab" style="display:none;">
+    <h2>Services</h2>
+    <form id="serviceForm">
+      <input type="text" id="serviceTitle" placeholder="Title" required />
+      <input type="text" id="serviceDesc" placeholder="Description" />
+      <button type="submit">Add Service</button>
+    </form>
+
+    <table id="servicesTable">
+      <thead><tr><th>ID</th><th>Title</th><th>Description</th></tr></thead>
+      <tbody></tbody>
+    </table>
+
+    <h3>Assign Service to Person</h3>
+    <form id="assignForm">
+      <input type="number" id="assignPersonId" placeholder="Person ID" required />
+      <input type="number" id="assignServiceId" placeholder="Service ID" required />
+      <button type="submit">Assign</button>
+    </form>
+  </section>
+
+  <script src="app.js"></script>
+</body>
+</html>

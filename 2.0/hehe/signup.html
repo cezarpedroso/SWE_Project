@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Signup</title>
+  <style>
+    body { font-family: Arial; margin: 2rem; }
+    form { display: flex; flex-direction: column; width: 300px; gap: 0.5rem; }
+    input, button { padding: 8px; }
+    .error { color: red; }
+    .success { color: green; }
+  </style>
+</head>
+<body>
+  <h2>Create an Account</h2>
+  <form id="signupForm">
+    <input type="text" id="username" placeholder="Username" required />
+    <input type="email" id="email" placeholder="Email" required />
+    <input type="password" id="password" placeholder="Password" required />
+    <input type="text" id="location" placeholder="Location (optional)" />
+    <button type="submit">Sign Up</button>
+  </form>
+
+  <p id="message"></p>
+
+  <script>
+    document.getElementById("signupForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      console.log("📝 Form submitted"); // Debug log
+      
+      const username = document.getElementById("username").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const location = document.getElementById("location").value.trim();
+
+      const data = {
+        username: username,
+        email: email,
+        password: password,
+        userLocation: location
+      };
+
+      console.log("📤 Sending data:", data); // Debug log
+
+      try {
+        const res = await fetch("/api/signup", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+
+        console.log("📥 Response status:", res.status); // Debug log
+        
+        const result = await res.json();
+        console.log("📥 Response data:", result); // Debug log
+
+        const messageElement = document.getElementById("message");
+        if (res.ok) {
+          messageElement.textContent = result.message || "Signup successful!";
+          messageElement.className = "success";
+          alert("Signup successful! You can now log in.");
+          window.location.href = "/login.html";
+        } else {
+          messageElement.textContent = result.error || "Signup failed";
+          messageElement.className = "error";
+        }
+      } catch (error) {
+        console.error("❌ Fetch error:", error);
+        document.getElementById("message").textContent = "Network error - please try again";
+        document.getElementById("message").className = "error";
+      }
+    });
+  </script>
+</body>
+</html>
